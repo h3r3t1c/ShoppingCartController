@@ -1,5 +1,6 @@
 # Shopping Cart Controller
-An open source shopping cart wheel controller for you Wear 2.0+ watch.
+An open source shopping cart wheel controller for your Wear 2.0+ watch.
+
 ![Wear Screenshot 1](https://github.com/h3r3t1c/ShoppingCartController/blob/master/screenshots/Wear_1.png?raw=true)    ![Wear Screenshot 2](https://github.com/h3r3t1c/ShoppingCartController/blob/master/screenshots/Wear_2.png?raw=true)    ![Wear Screenshot 3](https://github.com/h3r3t1c/ShoppingCartController/blob/master/screenshots/Wear_3.png?raw=true)
 
 **Disclaimer:**
