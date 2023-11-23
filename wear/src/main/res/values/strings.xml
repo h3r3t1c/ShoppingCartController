@@ -5,4 +5,14 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">From the Square world,\nHello, %1$s!</string>
+    <string name="how_it_works_msg">Most electronic shopping cart wheels listen for a 7.8 kHz signal from an underground wire to know when to lock and unlock. A management remote can send a different signal at 7.8 kHz to the wheel to unlock it. Since 7.8 kHz is in the audio range, you can use the parasitic EMF from your phone\'s speaker to \"transmit\" a similar code by playing a crafted audio file.</string>
+    <string name="how_it_works">How It Works</string>
+    <string name="about">About</string>
+    <string name="continue_on_phone">Continue on phone</string>
+    <string name="unlock">Unlock</string>
+    <string name="lock">Lock</string>
+    <string name="arm">Arm</string>
+    <string name="purchase_check">Purchase Check</string>
+    <string name="how_to_use">How To Use</string>
+    <string name="how_to_use_explain">Before using disconnect any headphones you are using. Hold watch next to cart wheel and press desired command. Command sound will play. Wait for sound to finish playing and command should have been successfully sent.\n\nThere is no need to change sound settings. App will automatically adjust volume to full to play command then return to previous setting.</string>
 </resources>

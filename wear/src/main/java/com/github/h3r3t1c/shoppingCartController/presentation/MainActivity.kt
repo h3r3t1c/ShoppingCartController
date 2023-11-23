@@ -1,69 +1,93 @@
-/* While this template provides a good starting point for using Wear Compose, you can always
- * take a look at https://github.com/android/wear-os-samples/tree/main/ComposeStarter and
- * https://github.com/android/wear-os-samples/tree/main/ComposeAdvanced to find the most up to date
- * changes to the libraries and their usages.
- */
-
 package com.github.h3r3t1c.shoppingCartController.presentation
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.wear.compose.material.MaterialTheme
-import androidx.wear.compose.material.Text
-import com.github.h3r3t1c.shoppingCartController.R
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.wear.compose.material.HorizontalPageIndicator
+import androidx.wear.compose.material.PageIndicatorState
+import androidx.wear.compose.material.Scaffold
 import com.github.h3r3t1c.shoppingCartController.presentation.theme.ShoppingCartControllerTheme
+import com.github.h3r3t1c.shoppingCartController.presentation.ui.AboutPage
+import com.github.h3r3t1c.shoppingCartController.presentation.ui.CartOnePage
+import com.github.h3r3t1c.shoppingCartController.presentation.ui.CartTwoPage
+import com.github.h3r3t1c.shoppingCartController.presentation.ui.InitialDialog
+import com.github.h3r3t1c.shoppingCartController.presentation.util.Prefs
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            WearApp("Android")
+            MainWearApp(this)
         }
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun WearApp(greetingName: String) {
+fun MainWearApp(activity: Activity) {
     ShoppingCartControllerTheme {
-        /* If you have enough items in your list, use [ScalingLazyColumn] which is an optimized
-         * version of LazyColumn for wear devices with some added features. For more information,
-         * see d.android.com/wear/compose.
-         */
-        Column(
+        var showAcknowledgeDialog by remember {
+            mutableStateOf(!Prefs.isInitialAckSet(activity))
+        }
+        val pagerState = rememberPagerState(
+            initialPage = 0,
+            initialPageOffsetFraction = 0f,
+
+        ){3 /* is the number of pages... */}
+
+        val pageIndicatorState: PageIndicatorState = remember {
+            object : PageIndicatorState {
+                override val pageOffset: Float
+                    get() = pagerState.currentPageOffsetFraction
+                override val selectedPage: Int
+                    get() = pagerState.currentPage
+                override val pageCount: Int
+                    get() = pagerState.pageCount
+            }
+        }
+
+        if(showAcknowledgeDialog){
+            InitialDialog {
+                showAcknowledgeDialog = false
+                //Prefs.setInitialAckSet(activity)
+            }
+        }
+
+        Scaffold(
             modifier = Modifier
                 .fillMaxSize()
-                .background(MaterialTheme.colors.background),
-            verticalArrangement = Arrangement.Center
+                .background(color = Color.Black),
+            pageIndicator = { HorizontalPageIndicator(
+                pageIndicatorState = pageIndicatorState,
+                modifier = Modifier
+                    .padding(bottom = 8.dp)
+                    .fillMaxSize()
+            )}
         ) {
-            Greeting(greetingName = greetingName)
+            HorizontalPager(state = pagerState) { page ->
+                when(page){
+                    0-> CartOnePage()
+                    1-> CartTwoPage()
+                    2-> AboutPage(activity)
+                }
+            }
         }
+
     }
-}
-
-@Composable
-fun Greeting(greetingName: String) {
-    Text(
-        modifier = Modifier.fillMaxWidth(),
-        textAlign = TextAlign.Center,
-        color = MaterialTheme.colors.primary,
-        text = stringResource(R.string.hello_world, greetingName)
-    )
-}
-
-@Preview(device = Devices.WEAR_OS_SMALL_ROUND, showSystemUi = true)
-@Composable
-fun DefaultPreview() {
-    WearApp("Preview Android")
 }
