@@ -1,9 +1,5 @@
 <resources>
     <string name="app_name">Shopping Cart Controller</string>
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
     <string name="hello_world">From the Square world,\nHello, %1$s!</string>
     <string name="how_it_works_msg">Most electronic shopping cart wheels listen for a 7.8 kHz signal from an underground wire to know when to lock and unlock. A management remote can send a different signal at 7.8 kHz to the wheel to unlock it. Since 7.8 kHz is in the audio range, you can use the parasitic EMF from your phone\'s speaker to \"transmit\" a similar code by playing a crafted audio file.</string>
     <string name="how_it_works">How It Works</string>

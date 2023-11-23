@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
+import androidx.compose.foundation.gestures.animateScrollBy
 import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -223,6 +224,7 @@ fun CartTwoPage(){
                 .onRotaryScrollEvent {
                     coroutineScope.launch {
                         listState.scrollBy(it.verticalScrollPixels)
+                        listState.animateScrollBy(0f)
                     }
                     true
                 }
@@ -286,6 +288,7 @@ fun CartOnePage(){
                 .onRotaryScrollEvent {
                     coroutineScope.launch {
                         listState.scrollBy(it.verticalScrollPixels)
+                        listState.animateScrollBy(0f)
                     }
                     true
                 }
