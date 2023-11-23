@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+/wear/release/wear-release.apk
+/wear/release/output-metadata.json
