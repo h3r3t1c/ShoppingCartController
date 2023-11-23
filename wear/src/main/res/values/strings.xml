@@ -10,5 +10,5 @@
     <string name="arm">Arm</string>
     <string name="purchase_check">Purchase Check</string>
     <string name="how_to_use">How To Use</string>
-    <string name="how_to_use_explain">Before using disconnect any headphones you are using. Hold watch next to cart wheel and press desired command. Command sound will play. Wait for sound to finish playing and command should have been successfully sent.\n\nThere is no need to change sound settings. App will automatically adjust volume to full to play command then return to previous setting.</string>
+    <string name="how_to_use_explain">Before using disconnect any headphones you are using. Hold watch next to cart wheel and press desired command. Command sound will begin play. Wait for sound to finish playing and command should have been successfully sent.\n\nThere is no need to change sound settings. App will automatically adjust volume to full to play command then return to previous setting.</string>
 </resources>
